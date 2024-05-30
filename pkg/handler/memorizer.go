@@ -7,9 +7,11 @@ import (
 	"path/filepath"
 )
 
+var destination string = "../../templates/"
+
 func MemorizeTemplate(templatePath, templateName string) {
 	baseFolder := filepath.Base(templatePath)
-	fmt.Println(baseFolder)
+	fmt.Printf("baseFolder: %v", baseFolder)
 
 	files, err := os.ReadDir(templatePath)
 	if err != nil {
@@ -24,15 +26,15 @@ func MemorizeTemplate(templatePath, templateName string) {
 
 	for _, file := range files {
 		srcFile := filepath.Join(templatePath, file.Name())
-		dstFile := filepath.Join(templatePath, file.Name())
 
-		err = copyFile(srcFile, dstFile)
+		err = copyFile(srcFile)
 		if err != nil {
 			log.Fatal(err)
 		}
 	}
 }
 
-func copyFile(src, dst string) error {
+func copyFile(src string) error {
+	fmt.Printf("%v %v ", src, destination)
 	return nil
 }
