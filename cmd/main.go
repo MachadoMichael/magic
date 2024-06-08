@@ -24,9 +24,7 @@ func main() {
 	}
 
 	if numberOfArgs == 3 {
-		arg1 := os.Args[1]
-		arg2 := os.Args[2]
-		arg3 := os.Args[3]
+		arg1, arg2, arg3 := os.Args[1], os.Args[2], os.Args[3]
 		fmt.Printf("args: %v", numberOfArgs)
 		threeArgsHandler(arg1, arg2, arg3)
 	}
@@ -45,9 +43,9 @@ func oneArgHandler(arg string) {
 	}
 }
 
-func threeArgsHandler(action, path, alias string) {
-	if action == "create" {
-		handler.MemorizeTemplate(path, alias)
-
+func threeArgsHandler(action, alias, path string) {
+	if action == "create" && alias != "" && path != "" {
+		handler.MemorizeTemplate(alias, path)
 	}
+
 }
