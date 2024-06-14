@@ -5,12 +5,15 @@ import (
 	"log"
 	"os"
 
-	"github.com/MachadoMichael/magic/pkg/handler"
+	"github.com/MachadoMichael/magic/pkg/handler/mapper"
+	"github.com/MachadoMichael/magic/pkg/handler/memorizer"
 )
 
 var version float32 = 0.1
 
 func main() {
+	mapper.InitMapping()
+
 	numberOfArgs := len(os.Args) - 1
 
 	if numberOfArgs == 0 {
@@ -25,7 +28,7 @@ func main() {
 
 	if numberOfArgs == 3 {
 		arg1, arg2, arg3 := os.Args[1], os.Args[2], os.Args[3]
-		fmt.Printf("args: %v", numberOfArgs)
+		fmt.Println("args: ", numberOfArgs)
 		threeArgsHandler(arg1, arg2, arg3)
 	}
 
@@ -33,10 +36,10 @@ func main() {
 
 func oneArgHandler(arg string) {
 	if arg == "-version" || arg == "-v" {
-		fmt.Printf("magic version: %f", version)
+		fmt.Println("magic version: ", version)
 		return
 	} else if arg == "-help" || arg == "-h" {
-		fmt.Printf("magic version: %f", version) // change to help commands
+		fmt.Println("magic version: ", version) // change to help commands
 		return
 	} else {
 		log.Fatal("No valid arguments were provided. Please provide some valid argment, if look for help -help or -h.")
@@ -45,7 +48,7 @@ func oneArgHandler(arg string) {
 
 func threeArgsHandler(action, alias, path string) {
 	if action == "create" && alias != "" && path != "" {
-		handler.MemorizeTemplate(alias, path)
+		memorizer.MemorizeTemplate(alias, path)
 	}
 
 }

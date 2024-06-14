@@ -1,4 +1,4 @@
-package handler
+package mapper
 
 import (
 	"encoding/json"
@@ -17,8 +17,8 @@ type InfoMap struct {
 var magicMap map[string]InfoMap
 var fullPath string
 
-func initMapping() {
-	filename := "internal/mapping.json"
+func InitMapping() {
+	filename := "pkg/handler/mapper/internal/mapping.json"
 	path, err := os.Getwd()
 	if err != nil {
 		log.Fatalln("Error: ", err)
@@ -44,10 +44,9 @@ func initMapping() {
 		log.Fatalln("Error when try convert file to map.", err)
 		return
 	}
-
 }
 
-func setNewAlias(alias, path string) {
+func SetNewAlias(alias, path string) {
 	layout := "2006-01-02 15:04:05"
 	formattedTime := time.Now().Format(layout)
 
