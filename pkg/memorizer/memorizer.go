@@ -6,8 +6,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/MachadoMichael/magic/pkg/handler/archiver"
-	"github.com/MachadoMichael/magic/pkg/handler/mapper"
+	"github.com/MachadoMichael/magic/pkg/archiver"
+	"github.com/MachadoMichael/magic/pkg/mapper"
 )
 
 var destination string = "../../templates/"
