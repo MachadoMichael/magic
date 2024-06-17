@@ -1,11 +1,11 @@
-package memorizer
+package archiver
 
 import (
 	"os"
 	"path/filepath"
 )
 
-func copyFolder(src, dst string) error {
+func CopyFolder(src, dst string) error {
 	err := os.MkdirAll(dst, os.ModePerm)
 	if err != nil {
 		return err

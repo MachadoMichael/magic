@@ -6,6 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/MachadoMichael/magic/pkg/handler/archiver"
 	"github.com/MachadoMichael/magic/pkg/handler/mapper"
 )
 
@@ -13,17 +14,17 @@ var destination string = "../../templates/"
 
 func MemorizeTemplate(alias, path string) {
 	fmt.Println("path: ", path)
-	mapper.SetNewAlias(alias, "caminhos")
+	mapper.SetNewAlias(alias, path)
 
-	dirPath, errX := os.Getwd()
+	dir, errX := os.Getwd()
 	if errX != nil {
 		log.Fatalln("Error: ", errX)
 	}
 
-	completedPath := filepath.Join(dirPath, path)
-	completedPath2 := filepath.Join(dirPath, "templates", path)
+	completedPath := filepath.Join(dir, path)
+	completedPath2 := filepath.Join(dir, "templates", path)
 
 	fmt.Println("completePath: ", completedPath)
 
-	copyFolder(completedPath, completedPath2)
+	archiver.CopyFolder(completedPath, completedPath2)
 }

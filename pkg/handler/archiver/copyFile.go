@@ -1,11 +1,11 @@
-package memorizer
+package archiver
 
 import (
 	"fmt"
 	"os"
 )
 
-func copyFile(src, dst string) error {
+func CopyFile(src, dst string) error {
 	data, err := os.ReadFile(src)
 	if err != nil {
 		fmt.Println("Error reading file:", err)
