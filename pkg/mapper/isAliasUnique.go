@@ -4,11 +4,24 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"os"
+
+	"github.com/joho/godotenv"
 )
 
-func isAliasUnique(alias, jsonPath string) (bool, error) {
-	file, err := os.Open(jsonPath)
+func isAliasUnique(alias string) (bool, error) {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatalln("Error to read .env file")
+	}
+
+	mapping := os.Getenv("MAPPING_PATH")
+	if mapping == "" {
+		log.Fatalln("Error to read .env file")
+	}
+
+	file, err := os.Open(mapping)
 	if err != nil {
 		return false, err
 	}
@@ -21,6 +34,7 @@ func isAliasUnique(alias, jsonPath string) (bool, error) {
 	}
 
 	var jsonData map[string]InfoMap
+
 	err = json.Unmarshal(byteValue, &jsonData)
 	if err != nil {
 		return false, err

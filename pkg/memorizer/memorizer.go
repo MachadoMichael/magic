@@ -1,7 +1,6 @@
 package memorizer
 
 import (
-	"fmt"
 	"log"
 	"os"
 	"path/filepath"
@@ -13,7 +12,6 @@ import (
 var destination string = "../../templates/"
 
 func MemorizeTemplate(alias, path string) {
-	fmt.Println("path: ", path)
 	err := mapper.NewAlias(alias, path)
 	if err != nil {
 		log.Fatalln("Error: ", err)
@@ -26,8 +24,6 @@ func MemorizeTemplate(alias, path string) {
 
 	completedPath := filepath.Join(dir, path)
 	completedPath2 := filepath.Join(dir, "templates", path)
-
-	fmt.Println("completePath: ", completedPath)
 
 	archiver.CopyFolder(completedPath, completedPath2)
 }

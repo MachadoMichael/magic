@@ -3,15 +3,16 @@ package mapper
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"log"
 	"os"
 	"time"
 )
 
 func NewAlias(alias, path string) error {
-
-	exist, err := isAliasUnique(alias, path)
+	exist, err := isAliasUnique(alias)
 	if err != nil {
+		fmt.Println("here")
 		return err
 	}
 
