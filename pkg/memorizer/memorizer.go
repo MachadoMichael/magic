@@ -14,11 +14,14 @@ var destination string = "../../templates/"
 
 func MemorizeTemplate(alias, path string) {
 	fmt.Println("path: ", path)
-	mapper.SetNewAlias(alias, path)
+	err := mapper.NewAlias(alias, path)
+	if err != nil {
+		log.Fatalln("Error: ", err)
+	}
 
-	dir, errX := os.Getwd()
-	if errX != nil {
-		log.Fatalln("Error: ", errX)
+	dir, errDir := os.Getwd()
+	if errDir != nil {
+		log.Fatalln("Error: ", errDir)
 	}
 
 	completedPath := filepath.Join(dir, path)

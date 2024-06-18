@@ -6,19 +6,13 @@ import (
 	"log"
 	"os"
 	"path/filepath"
-	"time"
 )
-
-type InfoMap struct {
-	Path     string `json:"path"`
-	CreateAt string `json:"createAt"`
-}
 
 var magicMap map[string]InfoMap
 var fullPath string
 
 func InitMapping() {
-	filename := "pkg/handler/mapper/internal/mapping.json"
+	filename := "pkg/mapper/internal/mapping.json"
 	path, err := os.Getwd()
 	if err != nil {
 		log.Fatalln("Error: ", err)
@@ -44,27 +38,4 @@ func InitMapping() {
 		log.Fatalln("Error when try convert file to map.", err)
 		return
 	}
-}
-
-func SetNewAlias(alias, path string) {
-	layout := "2006-01-02 15:04:05"
-	formattedTime := time.Now().Format(layout)
-
-	info := InfoMap{
-		path,
-		formattedTime,
-	}
-
-	magicMap[alias] = info
-	updatedJSON, err := json.MarshalIndent(magicMap, "", " ")
-	if err != nil {
-		return
-	}
-
-	err = os.WriteFile(fullPath, updatedJSON, 0644)
-	if err != nil {
-		log.Fatal("Cannot write in file")
-		return
-	}
-
 }

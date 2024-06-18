@@ -5,9 +5,9 @@ import (
 	"log"
 	"os"
 
-	"github.com/MachadoMichael/magic/pkg/handler/args"
-	"github.com/MachadoMichael/magic/pkg/handler/mapper"
-	"github.com/MachadoMichael/magic/pkg/handler/memorizer"
+	"github.com/MachadoMichael/magic/pkg/args"
+	"github.com/MachadoMichael/magic/pkg/mapper"
+	"github.com/MachadoMichael/magic/pkg/memorizer"
 )
 
 var version float32 = 0.3

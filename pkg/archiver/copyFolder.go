@@ -33,7 +33,7 @@ func CopyFolder(src, dst string) error {
 				return err
 			}
 		} else {
-			err = copyFolder(path, dstPath)
+			err = CopyFolder(path, dstPath)
 			if err != nil {
 				return err
 			}
