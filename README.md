@@ -1,18 +1,17 @@
-Project    # < Magic >
+# Project < Magic >
 <fig>
-<img src="https://nordicapis.com/wp-content/uploads/10-Login-APIs.png" alt="tela de login">
+<img src="https://neurosciencenews.com/files/2023/11/mental-health-magicians-neurosicne.jpg" alt="tela de login">
 </fig>
 
 ## Initialization
 Use tool to inicialize project *Tools*.
 
 ## Tools
-* [Neovim](https://neovim.io/) / [Vscode](https://code.visualstudio.com/) - Editor de texto para desenvolvimento. [Docker](https://www.docker.com/) - Ferramenta para criar conteiners e facilitar o build da aplicação.
-* [Make](https://embarcados.com.br/introducao-ao-makefile/) -  Ferramenta para scriptar comandos
+* [Neovim](https://neovim.io/) / [Vscode](https://code.visualstudio.com/) - Text editor.
 
 ## Links importantes
-* [Go](https://go.dev/) -  Linguagem usada no projeto.
-* [Godotenv](https://github.com/joho/godotenv) - Package para acessar variavies de ambiente
+* [Go](https://go.dev/) - Language used on project.
+* [Godotenv](https://github.com/joho/godotenv) - Package to handle enviroments.
   
 # < Magic >
 
