@@ -16,7 +16,7 @@ func NewAlias(alias, path string) error {
 		return err
 	}
 
-	if exist {
+	if !exist {
 		return errors.New("already exist this alias")
 	}
 
@@ -34,7 +34,7 @@ func NewAlias(alias, path string) error {
 		return nil
 	}
 
-	err = os.WriteFile(fullPath, updatedJSON, 0644)
+	err = os.WriteFile(mappingPath, updatedJSON, 0644)
 	if err != nil {
 		log.Fatal("Cannot write in file")
 		return nil

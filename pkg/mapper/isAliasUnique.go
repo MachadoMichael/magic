@@ -2,7 +2,6 @@ package mapper
 
 import (
 	"encoding/json"
-	"fmt"
 	"io"
 	"log"
 	"os"
@@ -16,12 +15,7 @@ func isAliasUnique(alias string) (bool, error) {
 		log.Fatalln("Error to read .env file")
 	}
 
-	mapping := os.Getenv("MAPPING_PATH")
-	if mapping == "" {
-		log.Fatalln("Error to read .env file")
-	}
-
-	file, err := os.Open(mapping)
+	file, err := os.Open(mappingPath)
 	if err != nil {
 		return false, err
 	}
@@ -41,6 +35,5 @@ func isAliasUnique(alias string) (bool, error) {
 	}
 
 	_, exist := jsonData[alias]
-	fmt.Println(exist)
 	return !exist, nil
 }

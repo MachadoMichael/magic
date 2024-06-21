@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
 
@@ -18,7 +17,7 @@ func main() {
 		return
 	}
 
+	println("args: ", numberOfArgs)
 	args.ReadArgs(os.Args)
-	fmt.Println("args: ", numberOfArgs)
 
 }

@@ -5,22 +5,26 @@ import (
 	"io"
 	"log"
 	"os"
-	"path/filepath"
+
+	"github.com/joho/godotenv"
 )
 
 var magicMap map[string]InfoMap
-var fullPath string
+var mappingPath string
 
 func InitMapping() {
-	filename := "pkg/mapper/internal/mapping.json"
-	path, err := os.Getwd()
-	if err != nil {
-		log.Fatalln("Error: ", err)
+
+	errEnv := godotenv.Load()
+	if errEnv != nil {
+		log.Fatalln("Error to read .env file")
 	}
 
-	fullPath = filepath.Join(path, filename)
+	mappingPath = os.Getenv("MAPPING_PATH")
+	if mappingPath == "" {
+		log.Fatalln("Error to read .env file")
+	}
 
-	file, err := os.Open(fullPath)
+	file, err := os.Open(mappingPath)
 	if err != nil {
 		log.Fatal("Error on open file", err)
 	}

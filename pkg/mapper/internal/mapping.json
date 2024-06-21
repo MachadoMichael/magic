@@ -1,10 +1,6 @@
 {
- "read": {
-  "path": "caminhos",
-  "createAt": "2024-06-09 09:41:03"
- },
- "ttt": {
-  "path": "caminhos",
-  "createAt": "2024-06-14 09:04:52"
+ "daily": {
+  "path": "diaryOfMyMind.md",
+  "createAt": "2024-06-21 08:13:00"
  }
 }

@@ -9,9 +9,7 @@ import (
 	"github.com/MachadoMichael/magic/pkg/mapper"
 )
 
-var destination string = "../../templates/"
-
-func MemorizeTemplate(alias, path string) {
+func MemorizeTemplate(alias, path, parameter string) {
 	err := mapper.NewAlias(alias, path)
 	if err != nil {
 		log.Fatalln("Error: ", err)
@@ -23,7 +21,11 @@ func MemorizeTemplate(alias, path string) {
 	}
 
 	completedPath := filepath.Join(dir, path)
-	completedPath2 := filepath.Join(dir, "templates", path)
+	dst := filepath.Join(dir, "templates", path)
 
-	archiver.CopyFolder(completedPath, completedPath2)
+	if parameter == "--file" {
+		archiver.CopyFile(completedPath, dst)
+	} else {
+		archiver.CopyFolder(completedPath, dst)
+	}
 }
