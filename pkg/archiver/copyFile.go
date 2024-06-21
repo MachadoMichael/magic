@@ -6,6 +6,7 @@ import (
 )
 
 func CopyFile(src, dst string) error {
+	println("Copy file: ", src, dst)
 	data, err := os.ReadFile(src)
 	if err != nil {
 		fmt.Println("Error reading file:", err)

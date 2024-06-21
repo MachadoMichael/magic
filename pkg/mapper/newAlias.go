@@ -2,7 +2,6 @@ package mapper
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"log"
 	"os"
@@ -16,9 +15,10 @@ func NewAlias(alias, path string) error {
 		return err
 	}
 
-	if !exist {
-		return errors.New("already exist this alias")
-	}
+	println("exist ", exist)
+	// if !exist {
+	// 	return errors.New("already exist this alias")
+	// }
 
 	layout := "2006-01-02 15:04:05"
 	formattedTime := time.Now().Format(layout)
