@@ -9,8 +9,6 @@ import (
 	"github.com/MachadoMichael/magic/pkg/mapper"
 )
 
-var version float32 = 0.3
-
 func main() {
 	mapper.InitMapping()
 
