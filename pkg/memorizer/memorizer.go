@@ -24,12 +24,11 @@ func MemorizeTemplate(alias, path, parameter string) {
 		log.Fatalln("Error to read .env file")
 	}
 
-	repoErr := initRepository(repositoryFolder)
+	repoErr := archiver.CreateFolder(repositoryFolder)
 	if repoErr != nil {
 		log.Fatalln(repoErr)
 	}
 
-	println("parameter: ", parameter)
 	err := mapper.NewAlias(alias, path)
 	if err != nil {
 		log.Fatalln("Error: ", err)
@@ -42,9 +41,10 @@ func MemorizeTemplate(alias, path, parameter string) {
 
 	completedPath := filepath.Join(dir, path)
 	dst := filepath.Join(dir, "repository", alias, path)
-	println(dst)
-	println("Coath: ", completedPath)
+
 	if parameter == "--file" {
+		newFolder := filepath.Join(dir, "repository", alias)
+		archiver.CreateFolder(newFolder)
 		archiver.CopyFile(completedPath, dst)
 	} else {
 		archiver.CopyFolder(completedPath, dst)
