@@ -6,7 +6,6 @@ import (
 )
 
 func CreateFolder(directoryPath string) error {
-	// Check if the directory exists
 	_, err := os.Stat(directoryPath)
 	if err == nil {
 		return nil

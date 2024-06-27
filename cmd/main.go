@@ -16,8 +16,6 @@ func main() {
 		log.Fatal("No arguments were provided. Please provide the required arguments.")
 		return
 	}
-
-	println("args: ", numberOfArgs)
 	args.ReadArgs(os.Args)
 
 }

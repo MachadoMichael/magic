@@ -1,7 +1,6 @@
 package args
 
 import (
-	"fmt"
 	"log"
 	"os"
 
@@ -20,10 +19,10 @@ func one(arg string) {
 	}
 
 	if arg == "-version" || arg == "-v" {
-		fmt.Println("magic version: ", version)
+		println("magic version: ", version)
 		return
 	} else if arg == "-help" || arg == "-h" {
-		fmt.Println("magic version: ", version) // change to help commands
+		println("magic version: ", version) // change to help commands
 		return
 	} else {
 		log.Fatal("No valid arguments were provided. Please provide some valid argment, if look for help -help or -h.")

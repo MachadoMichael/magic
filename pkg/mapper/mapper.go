@@ -13,7 +13,6 @@ var magicMap map[string]InfoMap
 var mappingPath string
 
 func InitMapping() {
-
 	errEnv := godotenv.Load()
 	if errEnv != nil {
 		log.Fatalln("Error to read .env file")
