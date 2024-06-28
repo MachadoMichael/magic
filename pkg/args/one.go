@@ -2,9 +2,8 @@ package args
 
 import (
 	"log"
-	"os"
 
-	"github.com/joho/godotenv"
+	"github.com/MachadoMichael/magic/infra"
 )
 
 const documentation = `Magic Application Documentation
@@ -47,15 +46,7 @@ magic -v
 `
 
 func one(arg string) {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatalln("Error to read .env file")
-	}
-
-	version := os.Getenv("VERSION")
-	if version == "" {
-		log.Fatalln("Error to read .env file")
-	}
+	version := infra.Config.Version
 
 	if arg == "-version" || arg == "-v" {
 		println("magic version: ", version)

@@ -5,8 +5,8 @@ import (
 )
 
 func three(action, alias, path string) {
-	if action == "memorize" && alias != "" && path != "" {
-		memorizer.MemorizeTemplate(alias, path, "")
+	if action == "save" && alias != "" && path != "" {
+		memorizer.SaveTemplate(alias, path, "")
 	}
 
 }

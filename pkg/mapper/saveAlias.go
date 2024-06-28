@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-func NewAlias(alias, path string) error {
+func SaveAlias(alias, path string) error {
 	exist, err := isAliasUnique(alias)
 	if err != nil {
 		return err

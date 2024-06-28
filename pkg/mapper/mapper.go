@@ -10,9 +10,11 @@ import (
 )
 
 var magicMap map[string]InfoMap
-var mappingPath string = infra.Config.MappingPath
+var mappingPath string
 
-func InitMapping() {
+func Init() {
+	mappingPath = infra.Config.MappingPath
+
 	file, err := os.Open(mappingPath)
 	if err != nil {
 		log.Fatal("Error on open file", err)
