@@ -24,6 +24,7 @@ func NewAlias(alias, path string) error {
 	info := InfoMap{
 		path,
 		formattedTime,
+		0,
 	}
 
 	magicMap[alias] = info

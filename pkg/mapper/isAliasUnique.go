@@ -3,18 +3,10 @@ package mapper
 import (
 	"encoding/json"
 	"io"
-	"log"
 	"os"
-
-	"github.com/joho/godotenv"
 )
 
 func isAliasUnique(alias string) (bool, error) {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatalln("Error to read .env file")
-	}
-
 	file, err := os.Open(mappingPath)
 	if err != nil {
 		return false, err

@@ -6,23 +6,13 @@ import (
 	"log"
 	"os"
 
-	"github.com/joho/godotenv"
+	"github.com/MachadoMichael/magic/infra"
 )
 
 var magicMap map[string]InfoMap
-var mappingPath string
+var mappingPath string = infra.Config.MappingPath
 
 func InitMapping() {
-	errEnv := godotenv.Load()
-	if errEnv != nil {
-		log.Fatalln("Error to read .env file")
-	}
-
-	mappingPath = os.Getenv("MAPPING_PATH")
-	if mappingPath == "" {
-		log.Fatalln("Error to read .env file")
-	}
-
 	file, err := os.Open(mappingPath)
 	if err != nil {
 		log.Fatal("Error on open file", err)
