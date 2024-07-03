@@ -10,6 +10,7 @@ import (
 )
 
 func SaveTemplate(alias, path, parameter string) {
+	println("Save template", alias, path, parameter)
 	err := mapper.SaveAlias(alias, path, parameter)
 	if err != nil {
 		log.Fatalln("Error: ", err)

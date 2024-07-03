@@ -1,67 +1,41 @@
 package archiver
 
 import (
-	"io"
 	"os"
+	"path/filepath"
 )
 
 func CopyFolder(src, dst string) error {
-
-	println("____", src, dst)
-	srcFile, err := os.Open(src)
+	srcInfo, err := os.Stat(src)
 	if err != nil {
 		return err
 	}
-	defer srcFile.Close()
 
-	dstFile, err := os.Create(dst)
+	err = os.MkdirAll(dst, srcInfo.Mode())
 	if err != nil {
 		return err
 	}
-	defer dstFile.Close()
 
-	println("xxxxxxx", srcFile, dstFile)
+	entries, err := os.ReadDir(src)
+	if err != nil {
+		return err
+	}
 
-	_, err = io.Copy(dstFile, srcFile)
-	return err
+	for _, entry := range entries {
+		srcPath := filepath.Join(src, entry.Name())
+		dstPath := filepath.Join(dst, entry.Name())
 
-	// println("on begin: ", src, dst)
-	// err := os.MkdirAll(dst, os.ModePerm)
-	// if err != nil {
-	// 	return err
-	// }
-	//
-	// return filepath.Walk(src, func(path string, info os.FileInfo, err error) error {
-	// 	path = dst
-	// 	if path == src {
-	// 		println("path", path, src)
-	// 		return nil
-	// 	}
-	//
-	// 	relPath, err := filepath.Rel(src, path)
-	// 	if err != nil {
-	// 		return err
-	// 	}
-	//
-	// 	dstPath := filepath.Join(dst, relPath)
-	// 	println("-------dstPath", dstPath)
-	//
-	// 	if !info.IsDir() {
-	// 		data, err := os.ReadFile(path)
-	// 		if err != nil {
-	// 			return err
-	// 		}
-	// 		err = os.WriteFile(dstPath, data, os.ModePerm)
-	// 		if err != nil {
-	// 			return err
-	// 		}
-	// 	} else {
-	// 		err = CopyFolder(path, dstPath)
-	// 		if err != nil {
-	// 			return err
-	// 		}
-	// 	}
-	//
-	// 	return nil
-	// })
+		if entry.IsDir() {
+			err = CopyFolder(srcPath, dstPath)
+			if err != nil {
+				return err
+			}
+		} else {
+			err = CopyFile(srcPath, dstPath)
+			if err != nil {
+				return err
+			}
+		}
+	}
+	return nil
 }
