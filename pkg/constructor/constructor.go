@@ -7,12 +7,30 @@ import (
 
 func Build(alias, dst string) error {
 	resource, err := mapper.GetTemplate(alias)
+	println("resource", resource.Path)
+	println("destino", dst)
 	if err != nil {
 		return err
 	}
 
 	resource.Builds++
-	archiver.CopyFolder(resource.Path, dst)
+
+	if resource.IsFile {
+		println("FILE", resource.Path)
+		err = archiver.CopyFile(resource.Path, dst)
+		if err != nil {
+			return err
+		}
+
+		println("FILE")
+		return nil
+	}
+
+	err = archiver.CopyFolder(resource.Path, dst)
+	if err != nil {
+		println(err, "copy")
+		return err
+	}
 
 	return nil
 }

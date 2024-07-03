@@ -5,10 +5,13 @@ import (
 	"errors"
 	"log"
 	"os"
+	"path/filepath"
 	"time"
+
+	"github.com/MachadoMichael/magic/infra"
 )
 
-func SaveAlias(alias, path string) error {
+func SaveAlias(alias, rsc, parameter string) error {
 	exist, err := isAliasUnique(alias)
 	if err != nil {
 		return err
@@ -21,10 +24,21 @@ func SaveAlias(alias, path string) error {
 	layout := "2006-01-02 15:04:05"
 	formattedTime := time.Now().Format(layout)
 
+	var isFile bool
+	if parameter == "" {
+		isFile = false
+	} else {
+		isFile = true
+	}
+
+	path := filepath.Join(infra.Config.RepositoryPath, alias)
+
 	info := InfoMap{
+		rsc,
 		path,
 		formattedTime,
 		0,
+		isFile,
 	}
 
 	magicMap[alias] = info

@@ -6,12 +6,13 @@ import (
 )
 
 func DeleteTemplate(alias string) error {
-	err := mapper.DeleteAlias(alias)
+	template, err := mapper.GetTemplate(alias)
+	err = archiver.DeleteFolder(template.Path)
 	if err != nil {
 		return err
 	}
 
-	err = archiver.DeleteFolder(alias)
+	err = mapper.DeleteAlias(alias)
 	if err != nil {
 		return err
 	}
