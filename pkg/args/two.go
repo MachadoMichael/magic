@@ -10,6 +10,6 @@ func two(action, alias string) {
 	if action == "delete" || action == "del" {
 		memorizer.DeleteTemplate(alias)
 	} else {
-		log.Fatalln("Error when we try delete alias.")
+		log.Fatalln("Error when we try read parameters.")
 	}
 }

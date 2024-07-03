@@ -1,34 +1,34 @@
 package constructor
 
 import (
+	"path/filepath"
+
 	"github.com/MachadoMichael/magic/pkg/archiver"
 	"github.com/MachadoMichael/magic/pkg/mapper"
 )
 
 func Build(alias, dst string) error {
-	resource, err := mapper.GetTemplate(alias)
-	println("resource", resource.Path)
-	println("destino", dst)
+	template, err := mapper.GetTemplate(alias)
 	if err != nil {
 		return err
 	}
 
-	resource.Builds++
+	template.Builds++
 
-	if resource.IsFile {
-		println("FILE", resource.Path)
-		err = archiver.CopyFile(resource.Path, dst)
+	if template.IsFile {
+		src := filepath.Join(template.Path, template.Resource)
+		dst = filepath.Join(dst, template.Resource)
+		err = archiver.CopyFile(src, dst)
 		if err != nil {
 			return err
 		}
 
-		println("FILE")
 		return nil
 	}
 
-	err = archiver.CopyFolder(resource.Path, dst)
+	err = archiver.CopyFolder(template.Path, dst)
 	if err != nil {
-		println(err, "copy")
+		println(err.Error(), "copy")
 		return err
 	}
 
