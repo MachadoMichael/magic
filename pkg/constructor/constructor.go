@@ -8,7 +8,7 @@ import (
 )
 
 func Build(alias, dst string) error {
-	template, err := mapper.GetTemplate(alias)
+	template, err := mapper.GetInfoMap(alias)
 	if err != nil {
 		return err
 	}

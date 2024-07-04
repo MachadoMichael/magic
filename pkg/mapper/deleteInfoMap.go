@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-func DeleteAlias(alias string) error {
+func DeleteInfoMap(alias string) error {
 	delete(magicMap, alias)
 	updatedJSON, err := json.MarshalIndent(magicMap, "", " ")
 	if err != nil {

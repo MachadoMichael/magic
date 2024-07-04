@@ -11,7 +11,7 @@ import (
 	"github.com/MachadoMichael/magic/infra"
 )
 
-func SaveAlias(alias, rsc, parameter string) error {
+func SaveInfoMap(alias, rsc, parameter string) error {
 	exist, err := isAliasUnique(alias)
 	if err != nil {
 		return err
