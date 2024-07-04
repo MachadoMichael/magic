@@ -22,15 +22,15 @@ func Build(alias, dst string) error {
 		if err != nil {
 			return err
 		}
-
+		mapper.UpdateInfoMap(template, alias)
 		return nil
 	}
 
 	err = archiver.CopyFolder(template.Path, dst)
 	if err != nil {
-		println(err.Error(), "copy")
 		return err
 	}
 
+	mapper.UpdateInfoMap(template, alias)
 	return nil
 }

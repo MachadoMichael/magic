@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/MachadoMichael/magic/infra"
+	"github.com/MachadoMichael/magic/pkg/mapper"
 )
 
 const documentation = `Magic Application Documentation
@@ -55,6 +56,8 @@ func one(arg string) {
 		println(documentation)
 
 		return
+	} else if arg == "show" {
+		mapper.PrintAllInfoMap()
 	} else {
 		log.Fatal("No valid arguments were provided. Please provide some valid argment, if look for help -help or -h.")
 	}
