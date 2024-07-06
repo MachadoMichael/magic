@@ -1,30 +1,33 @@
 package infra
 
 import (
-	"log"
 	"os"
-
-	"github.com/joho/godotenv"
+	"path/filepath"
 )
 
 type ConfigData struct {
-	Version        string
+	Version        float32
 	MappingPath    string
 	RepositoryPath string
 }
 
 var Config *ConfigData
 
-func Init() {
-	err := godotenv.Load()
+func Init() error {
+	rootPath, err := os.Getwd()
 	if err != nil {
-		log.Fatalf("Error loading .env file")
+		return err
 	}
 
+	mappingPath := filepath.Join(rootPath, "pkg/mapper/internal/mapping.json")
+	repositoryPath := filepath.Join(rootPath, "repository")
+
 	Config = &ConfigData{
-		Version:        os.Getenv("VERSION"),
-		MappingPath:    os.Getenv("MAPPING_PATH"),
-		RepositoryPath: os.Getenv("REPOSITORY_PATH"),
+		Version:        0.7,
+		MappingPath:    mappingPath,
+		RepositoryPath: repositoryPath,
 	}
+
+	return nil
 
 }
