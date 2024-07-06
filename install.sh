@@ -4,6 +4,6 @@
 path=$(pwd)
 
 # Adiciona o alias no arquivo ~/.zshrc
-echo "alias magic='$path/magic'" >> ~/.zshrc
+echo "alias magic='$path/main'" >> ~/.zshrc
 
-echo "Alias 'magic' adicionado com sucesso no arquivo ~/.zshrc, apontando para $path/magic"
+echo "Alias 'magic' added succssefully in ~/.zshrc, pointer to $path/main"
