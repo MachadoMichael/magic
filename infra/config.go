@@ -1,6 +1,7 @@
 package infra
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 )
@@ -14,16 +15,20 @@ type ConfigData struct {
 var Config *ConfigData
 
 func Init() error {
-	rootPath, err := os.Getwd()
+
+	ex, err := os.Executable()
 	if err != nil {
+		fmt.Println("Error:", err)
 		return err
 	}
 
-	mappingPath := filepath.Join(rootPath, "pkg/mapper/internal/mapping.json")
-	repositoryPath := filepath.Join(rootPath, "repository")
+	exPath := filepath.Dir(ex)
+
+	mappingPath := filepath.Join(exPath, "pkg/mapper/internal/mapping.json")
+	repositoryPath := filepath.Join(exPath, "repository")
 
 	Config = &ConfigData{
-		Version:        0.7,
+		Version:        0.8,
 		MappingPath:    mappingPath,
 		RepositoryPath: repositoryPath,
 	}

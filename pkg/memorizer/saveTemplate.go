@@ -21,14 +21,23 @@ func SaveTemplate(alias, path, parameter string) {
 		return
 	}
 
+	exePath, err := os.Executable()
+	if err != nil {
+		println(err.Error())
+	}
+	rootPath := filepath.Dir(exePath)
+
 	completedPath := filepath.Join(dir, path)
-	dst := filepath.Join(dir, "repository", alias, path)
+	dst := filepath.Join(rootPath, "repository", alias, path)
 
 	if parameter == "--file" {
 		newFolder := filepath.Join(dir, "repository", alias)
 		archiver.CreateFolder(newFolder)
 		archiver.CopyFile(completedPath, dst)
 	} else {
-		archiver.CopyFolder(completedPath, dst)
+		err := archiver.CopyFolder(completedPath, dst)
+		if err != nil {
+			println(err.Error())
+		}
 	}
 }
